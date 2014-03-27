@@ -7,7 +7,7 @@ module.exports = function (grunt) {
 
     // Load all the options
     var options = this.options();
-
+    var support = options.support;
     var steps = options.steps;
     var tags = options.tags;
     var format = options.format;
@@ -45,6 +45,11 @@ module.exports = function (grunt) {
     var _ = grunt.util._;
     if (! _.isEmpty(files)) {
       execOptions = execOptions.concat(files);
+    }
+
+    if (! _.isEmpty(support)) {
+      execOptions.push('-r');
+      execOptions.push(support);
     }
 
     if (! _.isEmpty(steps)) {
